@@ -4,6 +4,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <3ds.h>
+#include "waithax/waithax.h"
+#include "kernel11_utils.h"
 
 static int menu_curprintscreen = 0;
 static PrintConsole menu_printscreen[2];
@@ -699,6 +701,10 @@ int main(int argc, char **argv)
 
 	printf("3ds_dsiwarehax_installer %s by yellows8.\n", VERSION);
 
+	//waithax_debug(true);
+	waithax_run();
+	patch_svcaccesstable();
+
 	if(ret==0)
 	{
 		ret = amInit();
@@ -838,6 +844,7 @@ int main(int argc, char **argv)
 
 	if(reboot_required)
 	{
+		waithax_cleanup();
 		consoleClear();
 		gfxExit();
 		APT_HardwareResetAsync();//Do a hardware reboot.
@@ -848,4 +855,3 @@ int main(int argc, char **argv)
 	gfxExit();
 	return 0;
 }
-

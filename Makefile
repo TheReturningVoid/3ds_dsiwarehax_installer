@@ -28,7 +28,8 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source
+SOURCES		:=	source \
+				source/waithax
 DATA		:=	data
 INCLUDES	:=	include
 
@@ -41,7 +42,7 @@ APP_AUTHOR	:=	yellows8
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-DEFINES	:=	
+DEFINES	:=
 
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=hard
 
